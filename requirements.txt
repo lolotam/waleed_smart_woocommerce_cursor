@@ -1,0 +1,41 @@
+# Core dependencies
+Flask==3.0.0
+Flask-Login==0.6.3
+Flask-WTF==1.1.1
+WTForms==3.0.1
+
+# Database
+SQLAlchemy==2.0.23
+Flask-SQLAlchemy==3.1.1
+alembic==1.12.0
+
+# WooCommerce integration
+woocommerce==3.0.0
+requests==2.31.0
+
+# Security
+python-dotenv==1.0.0
+bcrypt==4.0.1
+cryptography==41.0.3
+PyJWT==2.8.0
+
+# AI integration
+openai==1.3.5
+anthropic==0.5.0
+google-generativeai==0.3.1
+
+# Excel handling
+pandas==2.1.0
+openpyxl==3.1.2
+XlsxWriter==3.1.2
+
+# Utilities
+Pillow==10.0.0
+pywin32==310  # Windows specific for hardware ID
+psutil==5.9.5
+python-slugify==8.0.1
+python-dateutil==2.8.2
+pydantic==2.3.0
+
+# Added from the code block
+Werkzeug==3.0.1 

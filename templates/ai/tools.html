@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>AI Content Generator</h1>
+    
+    <div class="ai-tools-container">
+        <div class="ai-form">
+            <h2>Generate Content</h2>
+            <form id="generateForm" method="POST" action="{{ url_for('ai.generate') }}">
+                <div class="form-group">
+                    <label for="section">Content Type</label>
+                    <select name="section" id="section" required>
+                        <option value="product">Product Content</option>
+                        <option value="category">Category Content</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="field">Field</label>
+                    <select name="field" id="field" required>
+                        <option value="title">Title</option>
+                        <option value="description">Description</option>
+                        <option value="meta_title">Meta Title</option>
+                        <option value="meta_description">Meta Description</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product_data">Product Data</label>
+                    <textarea name="product_data" id="product_data" rows="5" required placeholder="Enter product details in JSON format"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </form>
+        </div>
+        
+        <div class="ai-result">
+            <h2>Generated Content</h2>
+            <div class="result-box">
+                <div class="placeholder">Generated content will appear here...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('generateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const resultBox = document.querySelector('.result-box');
+    const placeholder = resultBox.querySelector('.placeholder');
+    
+    try {
+        // Show loading state
+        placeholder.textContent = 'Generating content...';
+        
+        const response = await fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                section: form.section.value,
+                field: form.field.value,
+                product_data: JSON.parse(form.product_data.value)
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        // Display the generated content
+        placeholder.remove();
+        resultBox.innerHTML = `<div class="generated-content">${data.content}</div>`;
+        
+    } catch (error) {
+        placeholder.remove();
+        resultBox.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+    }
+});
+</script>
+{% endblock %} 

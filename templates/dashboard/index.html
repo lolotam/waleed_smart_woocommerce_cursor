@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Welcome, {{ current_user.username }}!</h1>
+    
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h2>AI Tools</h2>
+            <p>Generate product content using AI</p>
+            <a href="{{ url_for('ai.index') }}" class="btn btn-primary">Open AI Tools</a>
+        </div>
+        
+        <div class="dashboard-card">
+            <h2>Products</h2>
+            <p>Manage your WooCommerce products</p>
+            <a href="{{ url_for('products.index') }}" class="btn btn-primary">View Products</a>
+        </div>
+        
+        <div class="dashboard-card">
+            <h2>Categories</h2>
+            <p>Manage product categories</p>
+            <a href="{{ url_for('categories.index') }}" class="btn btn-primary">View Categories</a>
+        </div>
+        
+        <div class="dashboard-card">
+            <h2>Settings</h2>
+            <p>Configure your store settings</p>
+            <a href="{{ url_for('settings') }}" class="btn btn-primary">Open Settings</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

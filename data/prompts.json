@@ -1,0 +1,80 @@
+[
+  {
+    "id": "d8927cd1-e34b-4d80-8784-5c0f700a9b6d",
+    "name": "Product Title Generator",
+    "description": "Generates a concise, SEO-friendly product title",
+    "target_section": "product",
+    "target_field": "title",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Create a concise, SEO-friendly product title for a {product_type} with these features: {attributes}. The brand is {brand}. Make it under 70 characters.",
+    "temperature": 0.7,
+    "max_tokens": 50,
+    "created_at": "2025-04-11T15:28:22.412973",
+    "updated_at": "2025-04-11T15:28:22.412993"
+  },
+  {
+    "id": "6561bce5-99b8-4de7-877e-aab56788ddcd",
+    "name": "Product Description Generator",
+    "description": "Generates a detailed product description with features and benefits",
+    "target_section": "product",
+    "target_field": "description",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Write a detailed product description for a {product_type} with these features: {attributes}. The brand is {brand}. Include key features, benefits, and use cases. Format with bullet points for features.",
+    "temperature": 0.7,
+    "max_tokens": 500,
+    "created_at": "2025-04-11T15:28:22.413994",
+    "updated_at": "2025-04-11T15:28:22.413999"
+  },
+  {
+    "id": "f2c439b5-e171-40cc-9220-c7300be7e0b4",
+    "name": "SEO Meta Title Generator",
+    "description": "Generates an SEO-optimized meta title for a product",
+    "target_section": "product",
+    "target_field": "meta_title",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Create an SEO-optimized meta title for a {product_type} by {brand} with these features: {attributes}. Include the main keyword if possible: {focus_keyword}. Keep it under 60 characters.",
+    "temperature": 0.7,
+    "max_tokens": 70,
+    "created_at": "2025-04-11T15:28:22.415019",
+    "updated_at": "2025-04-11T15:28:22.415023"
+  },
+  {
+    "id": "64226903-01a9-42ef-b85d-14d4ff1c0c4d",
+    "name": "SEO Meta Description Generator",
+    "description": "Generates an SEO-optimized meta description for a product",
+    "target_section": "product",
+    "target_field": "meta_description",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Write an SEO-optimized meta description for a {product_type} by {brand} with these features: {attributes}. Include the main keyword if natural: {focus_keyword}. Make it compelling and under 160 characters.",
+    "temperature": 0.7,
+    "max_tokens": 200,
+    "created_at": "2025-04-11T15:28:22.416007",
+    "updated_at": "2025-04-11T15:28:22.416011"
+  },
+  {
+    "id": "79fbcabd-dee4-4f61-9577-919e0a1fd354",
+    "name": "Category Description Generator",
+    "description": "Generates a comprehensive category description",
+    "target_section": "category",
+    "target_field": "description",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Write a detailed description for a product category of {category} products. Cover what these products are, their common uses, benefits, and what customers should look for when buying. Use HTML formatting for headings and lists.",
+    "temperature": 0.7,
+    "max_tokens": 500,
+    "created_at": "2025-04-11T15:28:22.416949",
+    "updated_at": "2025-04-11T15:28:22.416953"
+  },
+  {
+    "id": "0976f2e6-1657-41af-a846-0013765ed43b",
+    "name": "Brand Description Generator",
+    "description": "Generates a comprehensive brand description",
+    "target_section": "brand",
+    "target_field": "description",
+    "model": "gpt-3.5-turbo",
+    "prompt_template": "Write a detailed description for the brand {brand}. Include information about the brand's history, values, product range, unique selling points, and what makes them stand out in the market. Use HTML formatting for headings and paragraphs.",
+    "temperature": 0.7,
+    "max_tokens": 500,
+    "created_at": "2025-04-11T15:28:22.417907",
+    "updated_at": "2025-04-11T15:28:22.417911"
+  }
+]

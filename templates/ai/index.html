@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools - Smart WooCommerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">Smart WooCommerce</div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('ai_bp.index') }}" class="active">AI Tools</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="dashboard-content">
+            <h1>AI Content Generator</h1>
+            
+            <div class="ai-tools-container">
+                <div class="ai-form">
+                    <h2>Generate Content</h2>
+                    <form id="generateForm">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productDescription">Product Description</label>
+                            <textarea id="productDescription" name="productDescription" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="field">Content Type</label>
+                            <select id="field" name="field" required>
+                                <option value="title">Product Title</option>
+                                <option value="description">Product Description</option>
+                                <option value="meta_title">SEO Meta Title</option>
+                                <option value="meta_description">SEO Meta Description</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn">Generate Content</button>
+                    </form>
+                </div>
+                
+                <div class="ai-result">
+                    <h2>Generated Content</h2>
+                    <div id="resultContent" class="result-box">
+                        <p class="placeholder">Generated content will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('generateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const productData = {
+                name: document.getElementById('productName').value,
+                description: document.getElementById('productDescription').value
+            };
+            
+            const field = document.getElementById('field').value;
+            
+            try {
+                const response = await fetch('/ai/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product_data: productData,
+                        section: 'product',
+                        field: field
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('resultContent').innerHTML = `
+                        <h3>Generated ${field.replace('_', ' ')}:</h3>
+                        <p>${result.content}</p>
+                    `;
+                } else {
+                    document.getElementById('resultContent').innerHTML = `
+                        <p class="error">Error: ${result.message}</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('resultContent').innerHTML = `
+                    <p class="error">Error: Failed to generate content</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 
